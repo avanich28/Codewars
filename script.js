@@ -20,3 +20,19 @@ function digPow(n, p) {
 console.log(digPow(89, 1)); // 1
 console.log(digPow(92, 1)); // -1
 console.log(digPow(46288, 3)); // 51
+
+// 6 kyu: Find the unique number
+function findUniq(arr) {
+  const storeNum = {};
+  arr.forEach(x => {
+    if (!storeNum[`${x}`]) storeNum[`${x}`] = 1;
+    else storeNum[`${x}`]++;
+  });
+
+  for (const prop in storeNum) {
+    if (storeNum[prop] === 1) return +prop;
+  }
+}
+console.log(findUniq([1, 0, 0])); // 1
+console.log(findUniq([1, 1, 1, 2, 1, 1])); // 2
+console.log(findUniq([3, 10, 3, 3, 3])); // 10
