@@ -8,3 +8,15 @@ function queueTime(customers, n) {
 }
 console.log(queueTime([10, 2, 3, 3], 2)); // 10
 console.log(queueTime([2, 3, 10, 2], 2)); // 12
+
+// 6 kyu: Playing with digits
+function digPow(n, p) {
+  const result = (n + '')
+    .split('')
+    .reduce((acc, cur, i) => acc + Math.pow(+cur, p + i), 0);
+
+  return Number.isInteger(result / n) ? result / n : -1;
+}
+console.log(digPow(89, 1)); // 1
+console.log(digPow(92, 1)); // -1
+console.log(digPow(46288, 3)); // 51
