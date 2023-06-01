@@ -1,2 +1,2 @@
 # Codewars
-For coding practice
+For coding practice 🔥
