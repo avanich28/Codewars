@@ -115,3 +115,13 @@ function countSmileys(arr) {
 //   return arr.filter(x => /^[:;][-~]?[)D]$/.test(x)).length;
 // }
 console.log(countSmileys([':)', ':(', ':D', ':O', ':;']));
+
+// kyu 6: Count characters in your string
+function count(string) {
+  // TODO
+  return string.split('').reduce((acc, cur) => {
+    !acc[cur] ? (acc[cur] = 1) : acc[cur]++;
+    return acc;
+  }, {});
+}
+console.log(count('abaABC'));
