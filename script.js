@@ -36,3 +36,16 @@ function findUniq(arr) {
 console.log(findUniq([1, 0, 0])); // 1
 console.log(findUniq([1, 1, 1, 2, 1, 1])); // 2
 console.log(findUniq([3, 10, 3, 3, 3])); // 10
+
+// arr.sort((a, b) => a - b)
+// arr[0] === arr[1] ? arr.pop() : arr[0]
+
+// 6 kyu: Mexican Wave
+function wave(str) {
+  return new Array(str.length)
+    .fill(str)
+    .map((x, i) => x.slice(0, i) + x[i].toUpperCase() + x.slice(i + 1))
+    .filter((x, i) => x[i] !== ' ');
+}
+console.log(wave(''));
+console.log(wave('two words'));
