@@ -204,3 +204,18 @@ function isPangram(string) {
   return alphabet.length === 26 ? true : false;
 }
 // console.log(isPangram('The quick brown fox jumps over the lazy dog.'));
+
+// kyu 6: Counting Duplicates
+function duplicateCount(text) {
+  //...
+  return Object.values(
+    text
+      .toLowerCase()
+      .split('')
+      .reduce((acc, cur) => {
+        !acc[cur] ? (acc[cur] = 1) : acc[cur]++;
+        return acc;
+      }, {})
+  ).filter(x => x > 1).length;
+}
+// console.log(duplicateCount('Indivisibilities')); // 2
