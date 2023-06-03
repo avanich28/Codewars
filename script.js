@@ -89,7 +89,7 @@ function towerBuilder(nFloors) {
       .padEnd(nFloors * 2 - 1, ' ')
   );
 }
-console.log(towerBuilder(3)); //  ['  *  ', ' *** ', '*****']
+// console.log(towerBuilder(3)); //  ['  *  ', ' *** ', '*****']
 
 // Array.from({ length: 5 }, (v, i) => i);
 // [0, 1, 2, 3, 4]
@@ -114,7 +114,7 @@ function countSmileys(arr) {
 // function countSmileys(arr) {
 //   return arr.filter(x => /^[:;][-~]?[)D]$/.test(x)).length;
 // }
-console.log(countSmileys([':)', ':(', ':D', ':O', ':;']));
+// console.log(countSmileys([':)', ':(', ':D', ':O', ':;']));
 
 // kyu 6: Count characters in your string
 function count(string) {
@@ -124,4 +124,83 @@ function count(string) {
     return acc;
   }, {});
 }
-console.log(count('abaABC'));
+// console.log(count('abaABC'));
+
+// kyu 6: Equal Sides Of An Array
+function findEvenIndex(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    let left = arr.slice(0, i).reduce((acc, cur) => acc + cur, 0);
+    let right = arr.slice(i + 1).reduce((acc, cur) => acc + cur, 0);
+
+    if (left === right) return i;
+  }
+  return -1;
+}
+// console.log(findEvenIndex([20, 10, 30, 10, 10, 15, 35])); // 3
+// console.log(findEvenIndex([1, 2, 3, 4, 5, 6])); // -1
+
+// 6 kyu: Array.diff
+function arrayDiff(a, b) {
+  return a.filter(x => !b.includes(x));
+}
+// console.log(arrayDiff([1, 2], [1])); // [2]
+// console.log(arrayDiff([], [1, 2])); // []
+
+// 7 kyu: Isograms
+function isIsogram(str) {
+  const arrStr = str.toLowerCase().split('');
+  return arrStr.every((x, i) =>
+    x === '' ||
+    !arrStr
+      .slice(0, i)
+      .concat(arrStr.slice(i + 1))
+      .includes(x)
+      ? true
+      : false
+  );
+}
+// function isIsogram(str){
+// 	return new Set(str.toUpperCase()).size == str.length;
+// }
+// console.log(isIsogram('isogram')); // true
+// console.log(isIsogram('isIsogram')); // false
+// console.log(isIsogram('')); // true
+
+// kyu 5: Rot13 🔥
+function rot13(message) {
+  //your code here
+  const cipherA = 'abcdefghijklmABCDEFGHIJKLM';
+  const cipherB = 'nopqrstuvwxyzNOPQRSTUVWXYZ';
+
+  return message
+    .split('')
+    .map(x => {
+      if (!(cipherA + cipherB).includes(x)) return x;
+
+      const type = cipherA.split('').includes(x) ? 'cipherA' : 'cipherB';
+
+      const index =
+        type === 'cipherA' ? cipherA.indexOf(x) : cipherB.indexOf(x);
+
+      return type === 'cipherA' ? cipherB[index] : cipherA[index];
+    })
+    .join('');
+}
+// function rot13(message) {
+//   var a = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+//   var b = 'nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM';
+//   return message.replace(/[a-z]/gi, match => {
+//     console.log(match)
+//     return b[a.indexOf(match)]});
+// }
+// console.log(rot13('Test:)')); // Grfg:)
+
+// kyu 6: Detect Pangram
+function isPangram(string) {
+  const alphabet = [...new Set(string.toLowerCase())].filter(x =>
+    /[a-z]/.test(x)
+  );
+
+  return alphabet.length === 26 ? true : false;
+}
+// console.log(isPangram('The quick brown fox jumps over the lazy dog.'));
