@@ -219,3 +219,26 @@ function duplicateCount(text) {
   ).filter(x => x > 1).length;
 }
 // console.log(duplicateCount('Indivisibilities')); // 2
+
+// kyu 6: Break camelCase
+function solution(string) {
+  return string === ''
+    ? ''
+    : string[0] + string.slice(1).replace(/[A-Z]/g, w => ` ${w}`);
+}
+// console.log(solution('aC'));
+
+// kyu 6: Find the odd int
+function findOdd(A) {
+  //happy coding!
+  const count = A.reduce((acc, cur) => {
+    !acc[cur] ? (acc[cur] = 1) : acc[cur]++;
+    return acc;
+  }, {});
+  console.log(count);
+
+  for (const [key, value] of Object.entries(count)) {
+    if (value % 2 !== 0) return +key;
+  }
+}
+// console.log(findOdd([20, 1, 1, 2, 2, 3, 3, 5, 5, 4, 20, 4, 5])); // 5
