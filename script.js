@@ -242,3 +242,58 @@ function findOdd(A) {
   }
 }
 // console.log(findOdd([20, 1, 1, 2, 2, 3, 3, 5, 5, 4, 20, 4, 5])); // 5
+
+// kyu 6: Take a Number And Sum Its Digits Raised To The Consecutive Powers And ....¡Eureka!!
+function sumDigPow(a, b) {
+  let eureka = [];
+  for (let i = a; i <= b; i++) {
+    const powSum = (i + '')
+      .split('')
+      .map((x, i) => Math.pow(x, i + 1))
+      .reduce((acc, cur) => acc + cur, 0);
+    if (powSum === i) eureka.push(powSum);
+  }
+  return eureka;
+}
+// console.log(sumDigPow(90, 100));
+
+// kyu 6: Two Sum
+function twoSum(numbers, target) {
+  // ...
+  for (let i = 0; i < numbers.length - 1; i++) {
+    for (let j = i + 1; j < numbers.length; j++) {
+      if (numbers[i] + numbers[j] === target) return [i, j];
+    }
+  }
+}
+// console.log(twoSum([2, 2, 3], 4));
+
+// kyu 4: Strip comments
+function solution(input, markers) {
+  const output = input
+    .split('\n')
+    .map(x => {
+      if (!x.includes(markers[0]) && !x.includes(markers[1])) return x;
+
+      const indexMarker = x.includes(`${markers[0]}`)
+        ? x.indexOf(`${markers[0]}`)
+        : x.indexOf(`${markers[1]}`);
+
+      return x.slice(0, indexMarker).trim();
+    })
+    .join('\n');
+
+  return output;
+}
+// function solution(input, markers) {
+//   return input
+//     .split('\n')
+//     .map(x => markers.reduce((aIsX, marker) => aIsX.split(marker)[0].trimEnd(), x)) // 🔥
+//     .join('\n');
+// }
+console.log(
+  solution('apples, plums % and bananas\npears\noranges !applesauce', [
+    '%',
+    '!',
+  ])
+);
