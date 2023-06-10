@@ -205,7 +205,7 @@ function isPangram(string) {
 }
 // console.log(isPangram('The quick brown fox jumps over the lazy dog.'));
 
-// kyu 6: Counting Duplicates
+// 6 kyu: Counting Duplicates
 function duplicateCount(text) {
   //...
   return Object.values(
@@ -220,7 +220,7 @@ function duplicateCount(text) {
 }
 // console.log(duplicateCount('Indivisibilities')); // 2
 
-// kyu 6: Break camelCase
+// 6 kyu: Break camelCase
 function solution(string) {
   return string === ''
     ? ''
@@ -228,7 +228,7 @@ function solution(string) {
 }
 // console.log(solution('aC'));
 
-// kyu 6: Find the odd int
+// 6 kyu: Find the odd int
 function findOdd(A) {
   //happy coding!
   const count = A.reduce((acc, cur) => {
@@ -243,7 +243,7 @@ function findOdd(A) {
 }
 // console.log(findOdd([20, 1, 1, 2, 2, 3, 3, 5, 5, 4, 20, 4, 5])); // 5
 
-// kyu 6: Take a Number And Sum Its Digits Raised To The Consecutive Powers And ....¡Eureka!!
+// 6 kyu: Take a Number And Sum Its Digits Raised To The Consecutive Powers And ....¡Eureka!!
 function sumDigPow(a, b) {
   let eureka = [];
   for (let i = a; i <= b; i++) {
@@ -257,7 +257,7 @@ function sumDigPow(a, b) {
 }
 // console.log(sumDigPow(90, 100));
 
-// kyu 6: Two Sum
+// 6 kyu: Two Sum
 function twoSum(numbers, target) {
   // ...
   for (let i = 0; i < numbers.length - 1; i++) {
@@ -268,7 +268,7 @@ function twoSum(numbers, target) {
 }
 // console.log(twoSum([2, 2, 3], 4));
 
-// kyu 4: Strip comments
+// 4 kyu: Strip comments
 function solution(input, markers) {
   const output = input
     .split('\n')
@@ -299,7 +299,7 @@ function solution(input, markers) {
 //   ])
 // );
 
-// kyu 4: Adding Big Numbers
+// 4 kyu: Adding Big Numbers
 function add(a, b) {
   const len = Math.max(a.length, b.length);
   const aRev = a.split('').reverse();
@@ -315,5 +315,23 @@ function add(a, b) {
   }
   return carry !== 0 ? carry + output.join('') : output.join('');
 }
+// console.log(add('63829983432984289347293874', '90938498237058927340892374089')); // 110
 
-console.log(add('63829983432984289347293874', '90938498237058927340892374089')); // 110
+// 6 kyu: Build Tower Advanced
+function towerBuilder(nFloors, nBlockSz) {
+  const arr = [];
+  const [unit, repeatFloor] = nBlockSz;
+  const maxLength = unit * (2 * nFloors - 1);
+  for (let i = 0; i < nFloors; i++) {
+    const str = '*'.repeat(unit * (2 * i + 1));
+    const space = ' '.repeat((maxLength - str.length) / 2);
+    for (let j = 0; j < repeatFloor; j++) {
+      arr.push(space + str + space);
+    }
+  }
+  return arr;
+}
+// console.log(towerBuilder(3, [4, 2]));
+
+// 4 kyu: Catching Car Mileage Numbers
+function isInteresting(number, awesomePhrases) {}
