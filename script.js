@@ -291,9 +291,29 @@ function solution(input, markers) {
 //     .map(x => markers.reduce((aIsX, marker) => aIsX.split(marker)[0].trimEnd(), x)) // 🔥
 //     .join('\n');
 // }
-console.log(
-  solution('apples, plums % and bananas\npears\noranges !applesauce', [
-    '%',
-    '!',
-  ])
-);
+
+// console.log(
+//   solution('apples, plums % and bananas\npears\noranges !applesauce', [
+//     '%',
+//     '!',
+//   ])
+// );
+
+// kyu 4: Adding Big Numbers
+function add(a, b) {
+  const len = Math.max(a.length, b.length);
+  const aRev = a.split('').reverse();
+  const bRev = b.split('').reverse();
+  let output = [];
+  let carry = 0;
+  for (let i = 0; i < len; i++) {
+    const num = [aRev[i], bRev[i]].map(x => (x === undefined ? 0 : +x));
+    const sum = num[0] + num[1] + carry;
+
+    carry = sum > 9 ? +String(sum)[0] : 0;
+    output.unshift(sum > 9 ? +String(sum)[1] : sum);
+  }
+  return carry !== 0 ? carry + output.join('') : output.join('');
+}
+
+console.log(add('63829983432984289347293874', '90938498237058927340892374089')); // 110
