@@ -334,4 +334,56 @@ function towerBuilder(nFloors, nBlockSz) {
 // console.log(towerBuilder(3, [4, 2]));
 
 // 4 kyu: Catching Car Mileage Numbers
-function isInteresting(number, awesomePhrases) {}
+function isInteresting(number, awesomePhrases) {
+  if (number < 98) return 0;
+
+  const strNum = num =>
+    String(num)
+      .split('')
+      .map(x => Number(x));
+
+  const checkCondition = (num, strNumArr) => {
+    if (strNumArr.length < 3) return false;
+    if (
+      awesomePhrases.includes(num) ||
+      strNumArr.slice(1).every(x => x === 0) ||
+      strNumArr.slice(1).every(x => strNum[0] === x) ||
+      Number(strNumArr.reverse().join('')) === num
+    )
+      return true;
+
+    const checkSeq = strNumArr
+      .slice(1)
+      .every((x, i) => Math.abs(strNumArr[i] - x) === 1);
+
+    if (
+      Number(strNumArr.sort((a, b) => a - b).join('')) === num &&
+      checkSeq === true
+    )
+      return true;
+
+    if (
+      Number(strNumArr.sort((a, b) => b - a).join('')) === num &&
+      checkSeq === true
+    )
+      return true;
+
+    if (
+      String(num).slice(-2) === '90' &&
+      strNumArr.slice(1, -2).every((x, i) => Math.abs(strNumArr[i] - x) === 1)
+    )
+      return true;
+
+    return false;
+  };
+
+  const check1 = checkCondition(number, strNum(number));
+  const check2 = checkCondition(number + 1, strNum(number + 1));
+  const check3 = checkCondition(number + 2, strNum(number + 2));
+
+  if (check1 === true) return 2;
+  if (check2 === true || check3 === true) return 1;
+
+  return 0;
+}
+console.log(isInteresting(7890, [1337, 256]));
