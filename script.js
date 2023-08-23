@@ -386,4 +386,23 @@ function isInteresting(number, awesomePhrases) {
 
   return 0;
 }
-console.log(isInteresting(7890, [1337, 256]));
+// console.log(isInteresting(7890, [1337, 256]));
+
+// 4 kyu: So Many Permutations! 🔥 so hard!
+function permutations(str) {
+  if (str.length <= 1) return [str];
+
+  let arr = [];
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+
+    let remain = str.slice(0, i) + str.slice(i + 1, str.length);
+
+    for (let permutation of permutations(remain)) {
+      console.log(permutation);
+      arr.push(char + permutation);
+    }
+  }
+  return [...new Set(arr)];
+}
+console.log(permutations('abc'));
