@@ -399,10 +399,95 @@ function permutations(str) {
     let remain = str.slice(0, i) + str.slice(i + 1, str.length);
 
     for (let permutation of permutations(remain)) {
-      console.log(permutation);
+      // console.log(permutation);
       arr.push(char + permutation);
     }
   }
   return [...new Set(arr)];
 }
 console.log(permutations('abc'));
+
+// 4 kyu: Roman Numerals Helper
+class RomanNumerals {
+  static toRoman(num) {
+    let temp = num;
+    let str = '';
+    while (temp) {
+      if (temp >= 1000) {
+        str += 'M';
+        temp -= 1000;
+      } else if (temp >= 900) {
+        str += 'CM';
+        temp -= 900;
+      } else if (temp >= 500) {
+        str += 'D';
+        temp -= 500;
+      } else if (temp >= 400) {
+        str += 'CD';
+        temp -= 400;
+      } else if (temp >= 100) {
+        str += 'C';
+        temp -= 100;
+      } else if (temp >= 90) {
+        str += 'XC';
+        temp -= 90;
+      } else if (temp >= 50) {
+        str += 'L';
+        temp -= 50;
+      } else if (temp >= 40) {
+        str += 'XL';
+        temp -= 40;
+      } else if (temp >= 10) {
+        str += 'X';
+        temp -= 10;
+      } else if (temp >= 9) {
+        str += 'IX';
+        temp -= 9;
+      } else if (temp >= 5) {
+        str += 'V';
+        temp -= 5;
+      } else if (temp >= 4) {
+        str += 'IV';
+        temp -= 4;
+      } else if (temp >= 1) {
+        str += 'I';
+        temp -= 1;
+      }
+    }
+    return str;
+  }
+
+  static fromRoman(str) {
+    const roman = {
+      I: 1,
+      IV: 4,
+      V: 5,
+      IX: 9,
+      X: 10,
+      XL: 40,
+      L: 50,
+      XC: 90,
+      C: 100,
+      CD: 400,
+      D: 500,
+      CM: 900,
+      M: 1000,
+    };
+    let sum = 0;
+    let i = 0;
+    while (i < str.length) {
+      // For 2 digits in roman
+      let temp = roman[str[i] + str[i + 1]];
+      if (temp) {
+        sum += temp;
+        i += 2;
+      } else {
+        sum += roman[str[i]];
+        i++;
+      }
+    }
+    return sum;
+  }
+}
+console.log(RomanNumerals.toRoman(1990)); // MCMXC
+console.log(RomanNumerals.fromRoman('MDCLXVI')); // 1666
